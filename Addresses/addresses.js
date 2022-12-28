@@ -1,6 +1,1 @@
-const createNFTContract = "0xd5b728Bda26791A5AA229818c6FE466072683C2c";
-const createCubeContract= "0xD9fe723aa3e5a55593F412Cf047Df28BEBA00386";
-const auctionsContract= "0xfa6e9B14D493f33E1232Ee416A9f9a371f8e1175";
-const wethContract= "0x9921CDd0d8819F22b4B53B1cb700cF0d7f8B7149";
-const marketplaceContract= "0xE6051cDC362dc62824e2cA4c956d9F0852910869";
-const NFT= "0x56E8b46e3E06a263afDA3EFCb0056DfF4A6D44A4";
+const contractAddress= "";
