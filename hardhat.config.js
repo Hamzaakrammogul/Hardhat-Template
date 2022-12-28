@@ -17,19 +17,25 @@ module.exports = {
   ],
  },
  networks: {
-  goerli:{
-    url: `https://goerli.infura.io/v3/${INFURA_API_KEY}`,
+
+  mainnet:{
+    url: `https://mainnet.infura.io/v3/${INFURA_API_KEY}`,
     accounts: [WALLET_PRIVATE_KEY]
   },
-  mumbai: {
-    url: `https://polygon-mumbai.infura.io/v3/${INFURA_API_KEY}`,
+  goerli:{
+    url: `https://goerli.infura.io/v3/${INFURA_API_KEY}`,
     accounts: [WALLET_PRIVATE_KEY]
   },
   polygon:{
     url: `https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}`,
     accounts: [WALLET_PRIVATE_KEY]
   },
+  mumbai: {
+    url: `https://polygon-mumbai.infura.io/v3/${INFURA_API_KEY}`,
+    accounts: [WALLET_PRIVATE_KEY]
+  }
  },
+ 
  etherscan:{
   apiKey:
   { 
