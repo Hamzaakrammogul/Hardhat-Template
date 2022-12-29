@@ -30,7 +30,7 @@ module.exports = {
     url: `https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}`,
     accounts: [WALLET_PRIVATE_KEY]
   },
-  mumbai: {
+  polygonMumbai: {
     url: `https://polygon-mumbai.infura.io/v3/${INFURA_API_KEY}`,
     accounts: [WALLET_PRIVATE_KEY]
   }
@@ -41,7 +41,7 @@ module.exports = {
   { 
     //Polygon
     polygon: POLYGONSCAN_API_KEY,
-    mumbai: POLYGONSCAN_API_KEY,
+    polygonMumbai: POLYGONSCAN_API_KEY,
     //Ethereum
     mainnet: ETHERSCAN_API_KEY,
     goerli: ETHERSCAN_API_KEY,

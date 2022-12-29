@@ -1078,12 +1078,12 @@
         "NFT"
       ]
     },
-    "C:\\Users\\Ameer Hamza\\Downloads\\ContractCreationOfRobotdrop\\MarketPlace\\contracts\\MEAC.sol": {
-      "lastModificationDate": 1672150745562,
-      "contentHash": "b18b8ef0cc064072a7c510a9f7b31be4",
+    "C:\\Users\\Ameer Hamza\\Downloads\\ContractCreationOfRobotdrop\\Hardhat_Template\\contracts\\MEAC.sol": {
+      "lastModificationDate": 1672321144928,
+      "contentHash": "1fd800e670c656660c1c2aa93e0d32c2",
       "sourceName": "contracts/MEAC.sol",
       "solcConfig": {
-        "version": "0.6.7",
+        "version": "0.6.12",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -1107,25 +1107,31 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.6.0",
-        "^0.6.2"
+        "0.6.12"
       ],
       "artifacts": [
         "Address",
         "Context",
         "ERC20",
+        "ERC20Detailed",
+        "ERC20Pausable",
         "IERC20",
-        "METAC",
+        "IERC20Permit",
+        "MeacToken",
         "Ownable",
+        "Pausable",
+        "PauserRole",
+        "Roles",
+        "SafeERC20",
         "SafeMath"
       ]
     },
-    "C:\\Users\\Ameer Hamza\\Downloads\\ContractCreationOfRobotdrop\\MarketPlace\\contracts\\SwapContract.sol": {
-      "lastModificationDate": 1672220627503,
-      "contentHash": "a68297bcf5f849ee59c23b3ba26031e5",
-      "sourceName": "contracts/SwapContract.sol",
+    "C:\\Users\\Ameer Hamza\\Downloads\\ContractCreationOfRobotdrop\\Hardhat_Template\\contracts\\Staking_pool.sol": {
+      "lastModificationDate": 1672321263301,
+      "contentHash": "f6fd0afef4e20d5b9c900891a74502f7",
+      "sourceName": "contracts/Staking_pool.sol",
       "solcConfig": {
-        "version": "0.6.7",
+        "version": "0.6.12",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -1147,73 +1153,14 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "./MEAC.sol"
+      ],
       "versionPragmas": [
-        "^0.6.2",
-        "^0.6.0",
-        "^0.6.0",
-        "^0.6.0",
-        "^0.6.0",
-        "^0.6.7"
+        "^0.6.12"
       ],
       "artifacts": [
-        "Address",
-        "AggregatorV3Interface",
-        "Context",
-        "ERC20",
-        "IERC20",
-        "MeacToken",
-        "Ownable",
-        "SafeMath",
-        "SwapContract"
-      ]
-    },
-    "C:\\Users\\Ameer Hamza\\Downloads\\ContractCreationOfRobotdrop\\MarketPlace - Copy\\contracts\\SwapContract.sol": {
-      "lastModificationDate": 1672221444898,
-      "contentHash": "a68297bcf5f849ee59c23b3ba26031e5",
-      "sourceName": "contracts/SwapContract.sol",
-      "solcConfig": {
-        "version": "0.6.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.6.2",
-        "^0.6.0",
-        "^0.6.0",
-        "^0.6.0",
-        "^0.6.0",
-        "^0.6.7"
-      ],
-      "artifacts": [
-        "Address",
-        "AggregatorV3Interface",
-        "Context",
-        "ERC20",
-        "IERC20",
-        "MeacToken",
-        "Ownable",
-        "SafeMath",
-        "SwapContract"
+        "Staking_pool"
       ]
     }
   }
