@@ -589,7 +589,7 @@ contract ERC20 is IERC20, Ownable {
     * @param to The address to transfer to.
     * @param value The amount to be transferred.
     */
-    function transfer(address to, uint256 value) public onlyOwner virtual override returns (bool) {
+    function transfer(address to, uint256 value) public  virtual override returns (bool) {
         _transfer(msg.sender, to, value);
         return true;
     }
@@ -611,7 +611,7 @@ contract ERC20 is IERC20, Ownable {
      * @param spender The address which will spend the funds.
      * @param value The amount of tokens to be spent.
      */
-    function approve(address spender, uint256 value) public onlyOwner virtual override returns (bool) {
+    function approve(address spender, uint256 value) public  virtual override returns (bool) {
         require(spender != address(0));
 
         _allowed[msg.sender][spender] = value;
@@ -628,7 +628,7 @@ contract ERC20 is IERC20, Ownable {
      * @param value uint256 the amount of tokens to be transferred
      */
 
-    function transferFrom(address from, address to, uint256 value) public onlyOwner virtual override returns (bool) {
+    function transferFrom(address from, address to, uint256 value) public  virtual override returns (bool) {
 
         _allowed[from][msg.sender] = _allowed[from][msg.sender].sub(value);
         _transfer(from, to, value);
@@ -646,7 +646,7 @@ contract ERC20 is IERC20, Ownable {
      * @param spender The address which will spend the funds.
      * @param addedValue The amount of tokens to increase the allowance by.
      */
-    function increaseAllowance(address spender, uint256 addedValue) public onlyOwner virtual returns (bool) {
+    function increaseAllowance(address spender, uint256 addedValue) public  virtual returns (bool) {
         require(spender != address(0));
         _allowed[msg.sender][spender] = _allowed[msg.sender][spender].add(addedValue);
         emit Approval(msg.sender, spender, _allowed[msg.sender][spender]);
@@ -663,7 +663,7 @@ contract ERC20 is IERC20, Ownable {
      * @param spender The address which will spend the funds.
      * @param subtractedValue The amount of tokens to decrease the allowance by.
      */
-    function decreaseAllowance(address spender, uint256 subtractedValue) public onlyOwner virtual returns (bool) {
+    function decreaseAllowance(address spender, uint256 subtractedValue) public  virtual returns (bool) {
         require(spender != address(0));
         _allowed[msg.sender][spender] = _allowed[msg.sender][spender].sub(subtractedValue);
         emit Approval(msg.sender, spender, _allowed[msg.sender][spender]);
