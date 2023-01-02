@@ -9,8 +9,8 @@
         "version": "0.6.12",
         "settings": {
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
           "outputSelection": {
             "*": {
@@ -50,15 +50,15 @@
       ]
     },
     "C:\\Users\\Ameer Hamza\\Downloads\\ContractCreationOfRobotdrop\\Hardhat_Template\\contracts\\Staking_pool.sol": {
-      "lastModificationDate": 1672321263301,
-      "contentHash": "f6fd0afef4e20d5b9c900891a74502f7",
+      "lastModificationDate": 1672659307014,
+      "contentHash": "36c0bdd1a4336710b149daec0b688f15",
       "sourceName": "contracts/Staking_pool.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
           "outputSelection": {
             "*": {
@@ -87,15 +87,15 @@
       ]
     },
     "C:\\Users\\Ameer Hamza\\Downloads\\ContractCreationOfRobotdrop\\Hardhat_Template\\contracts\\SwapContract.sol": {
-      "lastModificationDate": 1672323374244,
-      "contentHash": "8b02721aced23e92925e602fa446c0f9",
+      "lastModificationDate": 1672410189663,
+      "contentHash": "cc865aabe8dae4a76d7a6d348d02950b",
       "sourceName": "contracts/SwapContract.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
           "outputSelection": {
             "*": {

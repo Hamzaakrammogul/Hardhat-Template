@@ -12,7 +12,12 @@ module.exports = {
   compilers: [
     {
       version: "0.6.12" ,
-      settings: {},
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 1000,
+        },
+      },
     },
   ],
  },

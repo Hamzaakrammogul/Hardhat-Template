@@ -16,7 +16,7 @@ contract Staking_pool is Ownable {
 
     // Info of each user.
     struct UserInfo {
-        uint256 amount;         // How many LP tokens the user has provided.
+        uint256 amount;         // How many MEAC tokens the user has provided.
         uint256 rewardDebt;     // Reward debt. See explanation below.
         uint256 doneDays;
         uint256 stakedDays;
@@ -26,13 +26,13 @@ contract Staking_pool is Ownable {
 
     // Info of each pool.
     struct PoolInfo {
-        IERC20 lpToken;           // Address of LP token contract.
+        IERC20 MeaceToken;           // Address of MEAC token contract.
         uint16 depositFeeBP;      // Deposit fee in basis points
     }
 
-    // The 2LC TOKEN!
+    // The MEAC TOKEN!
     MeacToken public local;
-    // 2LC tokens created per block.
+    // MEAC tokens created per block.
     // Bonus muliplier for early local makers.
     uint256 public constant BONUS_MULTIPLIER = 1;
     // Deposit Fee address
@@ -40,7 +40,7 @@ contract Staking_pool is Ownable {
 
     // Info of each pool.
     PoolInfo[] public poolInfo;
-    // Info of each user that stakes LP tokens.
+    // Info of each user that stakes MEAC tokens.
     mapping (uint256 => mapping (address => UserInfo)) public userInfo;
     
     mapping (uint256 => uint256) public bonusRateForTime;
@@ -60,7 +60,7 @@ contract Staking_pool is Ownable {
         bonusRateForTime[360] = 70;
 
         poolInfo.push(PoolInfo({
-            lpToken: local,
+            MeaceToken: local,
             depositFeeBP: 0
         }));
     }
@@ -69,18 +69,18 @@ contract Staking_pool is Ownable {
         return poolInfo.length;
     }
 
-    // Add a new lp to the pool. Can only be called by the owner.
-    // XXX DO NOT add the same LP token more than once. Rewards will be messed up if you do.
-    function add(IERC20 _lpToken, uint16 _depositFeeBP) public onlyOwner {
+    // Add a new MEAC to the pool. Can only be called by the owner.
+    // XXX DO NOT add the same MEAC token more than once. Rewards will be messed up if you do.
+    function add(IERC20 _MeaceToken, uint16 _depositFeeBP) public onlyOwner {
         require(_depositFeeBP <= 10000, "add: invalid deposit fee basis points");
        
         poolInfo.push(PoolInfo({
-            lpToken: _lpToken,
+            MeaceToken: _MeaceToken,
             depositFeeBP: _depositFeeBP
         }));
     }
 
-    // Update the given pool's 2LC allocation point and deposit fee. Can only be called by the owner.
+    // Update the given pool's MeaceToken allocation point and deposit fee. Can only be called by the owner.
     function set(uint256 _pid, uint16 _depositFeeBP) public onlyOwner {
         require(_depositFeeBP <= 10000, "set: invalid deposit fee basis points");
        
@@ -99,8 +99,8 @@ contract Staking_pool is Ownable {
         }
     }
 
-    // View function to see pending 2LC on frontend.
-    function pendingLocal(uint256 _pid, address _user) public view returns (uint256) {
+    // View function to see pending MeaceToken on frontend.
+    function pendingMEAC(uint256 _pid, address _user) public view returns (uint256) {
 
         UserInfo storage user = userInfo[_pid][_user];
         uint256 pending;
@@ -157,11 +157,10 @@ contract Staking_pool is Ownable {
     }
 
     /*
-     *Updated addOldUser function //_amount is the 2LC amount with decimals
-     *Added new parameter StakedDays.
-     *Both lockedDays and StakeDays Parameter will store in userInfo
-     *lockedDays parameter will set DepositAt timestamp 
-     *stakedDays parameter will set the canHarvestTimestamp
+     *Updated addOldUser function 
+     *_amount is the MeaceToken amount with decimals
+     *Added new parameter StakedDays and doneDays.
+     *Both doneDays and StakeDays Parameter will store in userInfo
      **/
     function addOldUser(address _walletAddress, uint256 _amount, uint256 _doneDays,uint256 _stakedDays) public onlyOwner() {
         UserInfo storage user = userInfo[0][_walletAddress];
@@ -189,7 +188,7 @@ contract Staking_pool is Ownable {
         }
     }
 
-    // Deposit LP tokens to MasterChef for 2LC allocation.
+    // Deposit MeaceToken to MasterChef for MeaceToken allocation.
     function deposit(uint256 _pid, uint256 _amount, uint256 _days) public {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
@@ -220,11 +219,11 @@ contract Staking_pool is Ownable {
         }
 
         if(_amount > 0) {
-            pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
+            pool.MeaceToken.safeTransferFrom(address(msg.sender), address(this), _amount);
             uint256 realAmount = _amount;
             if(pool.depositFeeBP > 0){
                 uint256 depositFee = _amount.mul(pool.depositFeeBP).div(10000);
-                pool.lpToken.safeTransfer(feeAddress, depositFee);
+                pool.MeaceToken.safeTransfer(feeAddress, depositFee);
                 realAmount = realAmount.sub(depositFee);
             }
 
@@ -246,7 +245,7 @@ contract Staking_pool is Ownable {
         return (rewardInfo.amount, rewardInfo.canHarvestTimestamp, rewardInfo.bonusRate, rewardInfo.isPaid);
     }
     
-    // Withdraw LP tokens from MasterChef.
+    // Withdraw MEAC tokens from MasterChef.
     function withdraw(uint256 _pid, uint256 _amount) public {
         UserInfo storage user = userInfo[_pid][msg.sender];
         require(user.amount >= _amount, "withdraw: not good");
@@ -283,7 +282,7 @@ contract Staking_pool is Ownable {
         }
     }
 
-    // Safe local transfer function, just in case if rounding error causes pool to not have enough 2LC.
+    // Safe local transfer function, just in case if rounding error causes pool to not have enough MeaceToken.
     function safeLocalTransfer(address _to, uint256 _amount) internal {
         uint256 localBal = local.balanceOf(address(this));
         if (_amount > localBal) {
@@ -300,7 +299,7 @@ contract Staking_pool is Ownable {
     }
 
 
-    // Shows the count of days since user had staked their Lp tokens
+    // Shows the count of days since user had staked their MeaceToken
     function userDoneDays(uint256 _pid, address _user) public view returns (uint256 stakedDays){
 
         UserInfo storage user = userInfo[_pid][_user];
@@ -310,7 +309,7 @@ contract Staking_pool is Ownable {
         return stakedDays;
     }
 
-    // Shows for how many days users staked the Lp tokens
+    // Shows for how many days users staked the MeaceToken
     function userStakedDays(uint256 _pid, address _user) public view returns (uint256 lockedDays){
 
         UserInfo storage user = userInfo[_pid][_user];
@@ -319,11 +318,11 @@ contract Staking_pool is Ownable {
         return lockedDays;
     }
 
-    // Allow owner to tranfer any BEP20 token from this contract to other addresses 
+    // Allow owner to tranfer any ERC20 token from this contract to other addresses 
     function transferERC20(IERC20 token, address to, uint256 amount) external onlyOwner returns (bool) { 
 
-        uint256 bep20balance = token.balanceOf(address(this));
-        require(amount <= bep20balance, "balance is low");
+        uint256 erc20balance = token.balanceOf(address(this));
+        require(amount <= erc20balance, "balance is low");
         token.transfer(to, amount);
         return true;
     }
